@@ -17,7 +17,55 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     scope=SCOPE
 ))
 
-# Testing (Printing my current Playlists name and Id)
+# Printing my current Playlists name and Id
 playlists = sp.current_user_playlists()
-for playlist in playlists['items']:
-    print(f"Name: {playlist['name']} | ID: {playlist['id']}")
+
+# I am going to keep this print as in the future it will allow me to identify which playlists I have and then manually convert from there
+# What am I saying, I can just use user input
+# Storing these in a dictionary/map will make accessing the metadata so much easier (so will do that)
+
+playlist_map = {
+    playlist['name']: {
+        'id': playlist['id'],
+        'track_count': playlist['tracks']['total']
+    } for playlist in playlists['items']
+}
+#Testing 🏁
+#print(playlist_map)
+
+
+def get_tracks_from_playlist(sp, playlist_id):
+    tracks = []
+    results = sp.playlist_items(playlist_id, fields='items.track.name,items.track.artists.name,next', additional_types=['track'])
+    
+    while results:
+        for item in results['items']:
+            track = item['track']
+            if track is not None:  # Can be "None" if unavailable
+                track_name = track['name']
+                artists = ', '.join([artist['name'] for artist in track['artists']])
+                tracks.append(f"{track_name} - {artists}")
+        
+        if results['next']:
+            results = sp.next(results)
+        else:
+            results = None
+    
+    return tracks
+
+
+# Values will have to be updated based on input here
+# SO far we get the tracks from the playlist correctly
+playlist_name = "Cardio"
+playlist_info = playlist_map.get(playlist_name)
+
+if playlist_info:
+    track_list = get_tracks_from_playlist(sp, playlist_info['id'])
+    print(f"Tracks in '{playlist_name}':")
+    for track in track_list:
+        print(track)
+else:
+    print(f"Playlist '{playlist_name}' not found.")
+
+
+
