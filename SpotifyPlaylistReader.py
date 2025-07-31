@@ -6,8 +6,8 @@ from spotipy.oauth2 import SpotifyOAuth
 # 🔓 Authentication ----------------------
 # These are the APP credentials I got from Spotify Developer
 # Note-to-self: REMEMBER❗️ that 127.0.0.1 is just a universal loopback IP address, so it just means "this computer"
-CLIENT_ID = 'id'
-CLIENT_SECRET = 'secret'
+CLIENT_ID = 'a3a292cbf6e64874abbb239292731d10'
+CLIENT_SECRET = '2aeee62be798425298e9624af778b348'
 REDIRECT_URI = 'http://127.0.0.1:8888/callback'
 SCOPE = 'playlist-read-private'
 
@@ -108,7 +108,7 @@ print(f"\n🔍 Searching YouTube for tracks in '{selected_playlist}':\n")
 
 
 # 📹 Youtube to MP3 ----------------------
-def download_as_mp3(youtube_url, output_folder='/downloads'):
+def download_as_mp3(youtube_url, output_folder='/Users/giulianaemberson/downloads'):
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': f'{output_folder}/%(title)s.%(ext)s',  # saving in downloads folder
