@@ -1,5 +1,6 @@
 import spotipy
 import yt_dlp
+import os
 from spotipy.oauth2 import SpotifyOAuth
 
 # 🔓 Authentication ----------------------
@@ -96,14 +97,47 @@ def search_youtube(query):
         
 print(f"\n🔍 Searching YouTube for tracks in '{selected_playlist}':\n")
 
-for song in song_list:
-    url = search_youtube(song)
-    if url:
-        print(f"{song} ➜ {url}")
-    else:
-        print(f"{song} ➜ ❌ No result found")
+# for song in song_list:
+#     url = search_youtube(song)
+#     if url:
+#         print(f"{song} ➜ {url}")
+#     else:
+#         print(f"{song} ➜ ❌ No result found")
 
 
 
 
 # 📹 Youtube to MP3 ----------------------
+def download_as_mp3(youtube_url, output_folder='downloads'):
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': f'{output_folder}/%(title)s.%(ext)s',  # saving in downloads folder
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+        'quiet': True,
+    }
+
+    # Making sure there is an output folder
+    os.makedirs(output_folder, exist_ok=True)
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        try:
+            ydl.download([youtube_url])
+            print(f"✅ Downloaded: {youtube_url}")
+        except Exception as e:
+            print(f"❌ Failed to download {youtube_url}\nError: {e}")
+
+
+# OUTPUT!!!--------------------------------------------------------
+for song in song_list:
+    print(f"\n🔍 Searching YouTube for: {song}")
+    url = search_youtube(song)
+    
+    if url:
+        print(f"🎧 Downloading: {song}")
+        download_as_mp3(url)
+    else:
+        print(f"❌ Could not find: {song}")
