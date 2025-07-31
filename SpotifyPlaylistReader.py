@@ -9,7 +9,7 @@ REDIRECT_URI = 'http://127.0.0.1:8888/callback'
 
 SCOPE = 'playlist-read-private'
 
-# Authentication
+# 🔓 Authentication
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     client_id=CLIENT_ID,
     client_secret=CLIENT_SECRET,
@@ -17,12 +17,9 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
     scope=SCOPE
 ))
 
-# Printing my current Playlists name and Id
-playlists = sp.current_user_playlists()
 
-# I am going to keep this print as in the future it will allow me to identify which playlists I have and then manually convert from there
-# What am I saying, I can just use user input
-# Storing these in a dictionary/map will make accessing the metadata so much easier (so will do that)
+# 🎼 Playlist MetaData ----------------------
+playlists = sp.current_user_playlists()
 
 playlist_map = {
     playlist['name']: {
@@ -30,10 +27,17 @@ playlist_map = {
         'song_count': playlist['tracks']['total']
     } for playlist in playlists['items']
 }
-#Testing 🏁
-#print(playlist_map)
+
+# 👤 User selection ----------------------
+print("\n🎵 Giuly's Playlists:")
+for name in playlist_map.keys():
+    print(f"- {name}")
+
+# Prompt user to choose one
+selected_playlist = input("\nEnter the name of the playlist you want to convert: ").strip()
 
 
+# 🎵 Songs MetaData ----------------------
 def get_songs_from_playlist(sp, playlist_id):
     songs = []
     results = sp.playlist_items(playlist_id, fields='items.track.name,items.track.artists.name,next', additional_types=['track'])
@@ -53,19 +57,13 @@ def get_songs_from_playlist(sp, playlist_id):
     
     return songs
 
-
-# Values will have to be updated based on input here
-# SO far we get the tracks from the playlist correctly
-playlist_name = "Cardio"
-playlist_info = playlist_map.get(playlist_name)
+# Getting the selected songs MetaData
+playlist_info = playlist_map.get(selected_playlist)
 
 if playlist_info:
     song_list = get_songs_from_playlist(sp, playlist_info['id'])
-    print(f"Tracks in '{playlist_name}':")
+    print(f"Tracks in '{selected_playlist}':")
     for song in song_list:
         print(song)
 else:
-    print(f"Playlist '{playlist_name}' not found.")
-
-
-
+    print(f"Playlist '{selected_playlist}' not found. Please make sure you typed the playlist correctly.")
