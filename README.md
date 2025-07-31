@@ -14,7 +14,8 @@ Make sure you have these installed:
 1. Python 3.9+
 2. Install Python packages:
 `pip install spotipy yt-dlp mutagen`
-3. Install FFmpeg (required by yt-dlp for MP3 conversion).
+https://spotipy.readthedocs.io/en/2.22.1/#getting-started
+4. Install FFmpeg (required by yt-dlp for MP3 conversion).
 - For macOS (with Homebrew):
 `brew install ffmpeg`
 - For Windows:
@@ -36,7 +37,7 @@ Download FFmpeg from https://ffmpeg.org/download.html and add it to your system 
 `python3 SpotifyPlaylistReader.py`
 
 📝 **You will need:**
-- A Spotify Developer App with:
+- A Spotify Developer App → https://developer.spotify.com/dashboard
   - playlist-read-private scope
   - Redirect URI set to: http://127.0.0.1:8888/callback
   - 👉 You'll be prompted to log in to Spotify the first time.
