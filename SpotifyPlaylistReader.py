@@ -27,15 +27,15 @@ playlists = sp.current_user_playlists()
 playlist_map = {
     playlist['name']: {
         'id': playlist['id'],
-        'track_count': playlist['tracks']['total']
+        'song_count': playlist['tracks']['total']
     } for playlist in playlists['items']
 }
 #Testing 🏁
 #print(playlist_map)
 
 
-def get_tracks_from_playlist(sp, playlist_id):
-    tracks = []
+def get_songs_from_playlist(sp, playlist_id):
+    songs = []
     results = sp.playlist_items(playlist_id, fields='items.track.name,items.track.artists.name,next', additional_types=['track'])
     
     while results:
@@ -44,14 +44,14 @@ def get_tracks_from_playlist(sp, playlist_id):
             if track is not None:  # Can be "None" if unavailable
                 track_name = track['name']
                 artists = ', '.join([artist['name'] for artist in track['artists']])
-                tracks.append(f"{track_name} - {artists}")
+                songs.append(f"{track_name} - {artists}")
         
         if results['next']:
             results = sp.next(results)
         else:
             results = None
     
-    return tracks
+    return songs
 
 
 # Values will have to be updated based on input here
@@ -60,10 +60,10 @@ playlist_name = "Cardio"
 playlist_info = playlist_map.get(playlist_name)
 
 if playlist_info:
-    track_list = get_tracks_from_playlist(sp, playlist_info['id'])
+    song_list = get_songs_from_playlist(sp, playlist_info['id'])
     print(f"Tracks in '{playlist_name}':")
-    for track in track_list:
-        print(track)
+    for song in song_list:
+        print(song)
 else:
     print(f"Playlist '{playlist_name}' not found.")
 
