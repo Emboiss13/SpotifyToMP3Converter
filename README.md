@@ -36,6 +36,7 @@ Download FFmpeg from https://ffmpeg.org/download.html and add it to your system 
 ▶️ **How to run:**
 `python3 SpotifyPlaylistReader.py`
 <br>
+<br>
 **NOTE:** _Make sure to change `CLIENT_ID` and `CLIENT_SECRET` in the authentication section, to match your Spotify Developer Credentials._
 
 📝 **You will need:**
