@@ -38,7 +38,7 @@ for name in playlist_map.keys():
     print(f"- {name}")
 
 # Prompt user to choose one
-selected_playlist = input("\nEnter the name of the playlist you want to convert: ").strip()
+selected_playlist = input("\nEnter the name of the playlist you want to convert to MP3 files: ").strip()
 
 
 
@@ -54,7 +54,7 @@ def get_songs_from_playlist(sp, playlist_id):
             if track is not None:  # Can be "None" if unavailable
                 track_name = track['name']
                 artists = ', '.join([artist['name'] for artist in track['artists']])
-                songs.append(f"{track_name} - {artists}")
+                songs.append(f"{track_name} - {artists} lyrics") # Added "lyrics" to improve YouTube search results
         
         if results['next']:
             results = sp.next(results)
@@ -102,11 +102,11 @@ print(f"\n🔍 Searching YouTube for tracks in '{selected_playlist}':\n")
 
 
 # 📹 Youtube to MP3 ----------------------
-def sanitize_filename(name):
+def clean_filename(name):
     return re.sub(r'[\\/*?:"<>|]', "", name)
 
 def download_as_mp3(youtube_url, song_name, output_folder='[ADD YOUR PATH HERE]'):
-    safe_filename = sanitize_filename(song_name)
+    safe_filename = clean_filename(song_name)
 
     ydl_opts = {
         'format': 'bestaudio/best',
