@@ -58,6 +58,12 @@ def download_as_mp3(youtube_url, song_name, output_folder='[ADD YOUR PATH HERE]'
     safe_filename = clean_filename(song_name)
 ```
 
+*Example:*
+```python
+def download_as_mp3(youtube_url, song_name, output_folder='/MyWindowsPC/Downloads'):
+    safe_filename = clean_filename(song_name)
+```
+
 **How to run:**
 `python3 SpotifyPlaylistReader.py`
 
