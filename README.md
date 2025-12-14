@@ -74,18 +74,25 @@ def download_as_mp3(youtube_url, song_name, output_folder='/MyWindowsPC/Download
 ---
 ### 🏷️ Script 2: MP3TagEditor.py
 
+<br>
+
 **What it does:**
 - Edits the metadata tags of all .mp3 files in a given folder
 - Supports adding album name, artist, and genre
 - Keeps things organised for MP3 players and music libraries
 
+<br>
+
 ### ▶️ How to run:
 `python3 MP3TagEditor.py`
+
+<br>
 
 📝 You'll be prompted to:
 - Enter a folder path with your MP3s
 - Optionally enter album, artist, and genre names
 
+<br>
 
 ---
 #### 🚧 Notes
