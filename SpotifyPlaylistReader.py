@@ -105,7 +105,7 @@ print(f"\n🔍 Searching YouTube for tracks in '{selected_playlist}':\n")
 def sanitize_filename(name):
     return re.sub(r'[\\/*?:"<>|]', "", name)
 
-def download_as_mp3(youtube_url, song_name, output_folder='downloads'):
+def download_as_mp3(youtube_url, song_name, output_folder='[ADD YOUR PATH HERE]'):
     safe_filename = sanitize_filename(song_name)
 
     ydl_opts = {
