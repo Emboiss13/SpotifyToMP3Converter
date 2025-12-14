@@ -16,16 +16,16 @@ Make sure you have these installed:
 `pip install spotipy yt-dlp mutagen`
 https://spotipy.readthedocs.io/en/2.22.1/#getting-started
 4. Install FFmpeg (required by yt-dlp for MP3 conversion).
-- For macOS (with Homebrew):
+- **For macOS (with Homebrew)**:
 `brew install ffmpeg`
-- For Windows:
+- **For Windows**:
 Download FFmpeg from https://ffmpeg.org/download.html and add it to your system PATH.
 
 
 ---
 ### 🎼 Script 1: SpotifyPlaylistReader.py
 
-✅ **What it does:**
+**What it does:**
 - Authenticates with your Spotify account
 - Lists your playlists
 - Let's you choose one playlist to download
@@ -33,29 +33,46 @@ Download FFmpeg from https://ffmpeg.org/download.html and add it to your system 
 - Searches for each track on YouTube
 - Downloads the best audio and converts it to MP3
 
-▶️ **How to run:**
-`python3 SpotifyPlaylistReader.py`
 <br>
-<br>
-**NOTE:** _Make sure to change `CLIENT_ID` and `CLIENT_SECRET` in the authentication section, to match your Spotify Developer Credentials._
 
-📝 **You will need:**
-- A Spotify Developer App → https://developer.spotify.com/dashboard
+**You will need:**
+- A Spotify Developer App → [ClientID & ClientSecret](https://developer.spotify.com/documentation/web-api/concepts/apps)
   - playlist-read-private scope
   - Redirect URI set to: http://127.0.0.1:8888/callback
   - 👉 You'll be prompted to log in to Spotify the first time.
+ <br>
+ <img width="2768" height="776" alt="image" src="https://github.com/user-attachments/assets/304f63a5-df57-4124-957d-8cf4c3433b80" />
 
 
+<br>
+<br>
+
+**Changes you MUST make to the code**: 
+>**IMPORTANT❗️:** _Change `CLIENT_ID = 'id'` and `CLIENT_SECRET = 'secret'` (lines `10` & `11`) in the authentication section, to match your Spotify Developer Credentials._
+
+<br>
+
+Change `line 115` to match the path you want to dowload the songs to: 
+```python
+def download_as_mp3(youtube_url, song_name, output_folder='[ADD YOUR PATH HERE]'):
+    safe_filename = clean_filename(song_name)
+```
+
+**How to run:**
+`python3 SpotifyPlaylistReader.py`
+
+<br>
+<br>
 
 ---
 ### 🏷️ Script 2: MP3TagEditor.py
 
-✅ **What it does:**
+**What it does:**
 - Edits the metadata tags of all .mp3 files in a given folder
 - Supports adding album name, artist, and genre
 - Keeps things organised for MP3 players and music libraries
 
-▶️ **How to run:**
+**How to run:**
 `python3 MP3TagEditor.py`
 
 📝 You'll be prompted to:
@@ -67,12 +84,7 @@ Download FFmpeg from https://ffmpeg.org/download.html and add it to your system 
 #### 🚧 Notes
 - These scripts do not upload or re-host any copyrighted content.
 - Always check YouTube’s and Spotify’s terms of use.
-- This project is intended for personal use only.
-
-#### 📌 To-Do (Optional Enhancements)
-- Automatically embed album art in MP3s
-- Add CLI options for tagging script (argparse)
-- GUI frontend using JavaScript for web users
+- **This project is intended for personal use only.**
 
 ---
 💡 Author
