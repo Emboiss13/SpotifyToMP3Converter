@@ -61,13 +61,14 @@ def download_as_mp3(youtube_url, song_name, output_folder='[ADD YOUR PATH HERE]'
 *Example:*
 ```python
 def download_as_mp3(youtube_url, song_name, output_folder='/MyWindowsPC/Downloads'):
-    safe_filename = clean_filename(song_name)
 ```
 
-**How to run:**
+<br>
+
+
+### ▶️ How to run:
 `python3 SpotifyPlaylistReader.py`
 
-<br>
 <br>
 
 ---
@@ -78,7 +79,7 @@ def download_as_mp3(youtube_url, song_name, output_folder='/MyWindowsPC/Download
 - Supports adding album name, artist, and genre
 - Keeps things organised for MP3 players and music libraries
 
-**How to run:**
+### ▶️ How to run:
 `python3 MP3TagEditor.py`
 
 📝 You'll be prompted to:
