@@ -6,9 +6,9 @@ from spotipy.oauth2 import SpotifyOAuth
 
 # 🔓 Authentication ----------------------
 # These are the APP credentials I got from Spotify Developer
-# Note-to-self: REMEMBER❗️ that 127.0.0.1 is just a universal loopback IP address, so it just means "this computer"
-CLIENT_ID = 'id'
-CLIENT_SECRET = 'secret'
+# Note: 127.0.0.1 is just a universal loopback IP address, so it just means "this computer"
+CLIENT_ID = 'id' # Replace with your Spotify Client ID
+CLIENT_SECRET = 'secret' # Replace with your Spotify Client Secret
 REDIRECT_URI = 'http://127.0.0.1:8888/callback'
 SCOPE = 'playlist-read-private'
 
@@ -33,7 +33,7 @@ playlist_map = {
 }
 
 # 👤 User selection ----------------------
-print("\n🎵 GIULY'S SPOTIFY PLAYLISTS 🎧\n")
+print("\n🎵 YOUR SPOTIFY PLAYLISTS 🎧\n")
 for name in playlist_map.keys():
     print(f"- {name}")
 
@@ -98,13 +98,6 @@ def search_youtube(query):
         
 print(f"\n🔍 Searching YouTube for tracks in '{selected_playlist}':\n")
 
-# for song in song_list:
-#     url = search_youtube(song)
-#     if url:
-#         print(f"{song} ➜ {url}")
-#     else:
-#         print(f"{song} ➜ ❌ No result found")
-
 
 
 
@@ -136,7 +129,7 @@ def download_as_mp3(youtube_url, song_name, output_folder='downloads'):
             print(f"❌ Failed to download {youtube_url}\nError: {e}")
 
 
-# OUTPUT!!!--------------------------------------------------------
+# 🎉 OUTPUT!!!--------------------------------------------------------
 for song in song_list:
     print(f"\n🔍 Searching YouTube for: {song}")
     url = search_youtube(song)
