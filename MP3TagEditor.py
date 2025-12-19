@@ -20,7 +20,7 @@ def tag_all_mp3s_in_folder(folder_path, album_name=None, artist_name=None, genre
             if genre:
                 audio["genre"] = genre
 
-            # Infer title from file name if missing
+            # "Guess" title from file name if missing
             if "title" not in audio:
                 audio["title"] = os.path.splitext(filename)[0]
 
@@ -30,7 +30,7 @@ def tag_all_mp3s_in_folder(folder_path, album_name=None, artist_name=None, genre
             print(f"⏭️ Skipped (not mp3): {filename}")
 
 
-# ------------------ USAGE ------------------
+# ------------------ MAIN FUNCTION (User input is collected & cleaned) ------------------
 if __name__ == "__main__":
     folder = input("📁 Enter path to folder with MP3s: ").strip()
     album = input("💽 Enter album name (optional): ").strip()
